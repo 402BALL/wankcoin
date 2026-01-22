@@ -29,7 +29,6 @@ import {
   ArrowLeftRight,
   Repeat,
   Users,
-  Gift,
   FileText
 } from 'lucide-react';
 import { connectPhantom, disconnectPhantom, getBalance, type WalletInfo } from '@/lib/solana';
