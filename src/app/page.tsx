@@ -100,12 +100,17 @@ export default function Home() {
       <header style={{position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, backgroundColor: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(10px)', borderBottom: '1px solid #f0f0f0'}}>
         <div style={{maxWidth: 1200, margin: '0 auto', padding: '0 24px', height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
           <Link href="/" style={{display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none'}}>
-            <div style={{width: 36, height: 36, borderRadius: 10, background: 'linear-gradient(135deg, #F7931A 0%, #FFD93D 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(247, 147, 26, 0.3)'}}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="white"/>
-                <path d="M12 6c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2s2-.9 2-2V8c0-1.1-.9-2-2-2z" fill="white"/>
-                <circle cx="12" cy="17" r="1.5" fill="white"/>
-              </svg>
+            <div style={{width: 36, height: 36, borderRadius: 10, overflow: 'hidden', boxShadow: '0 4px 12px rgba(247, 147, 26, 0.3)'}}>
+              <img 
+                src="/logo.png" 
+                alt="WankCoin" 
+                style={{width: '100%', height: '100%', objectFit: 'cover'}}
+                onError={(e) => {
+                  // Fallback to gradient if image not found
+                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.parentElement!.style.background = 'linear-gradient(135deg, #F7931A 0%, #FFD93D 100%)';
+                }}
+              />
             </div>
             <span style={{fontWeight: 700, fontSize: 20, color: '#000000', letterSpacing: '-0.5px'}}>WankCoin</span>
           </Link>

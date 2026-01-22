@@ -385,15 +385,25 @@ export default function Dashboard() {
               width: 40,
               height: 40,
               borderRadius: 12,
-              background: 'linear-gradient(135deg, #F7931A 0%, #FFD93D 100%)',
+              overflow: 'hidden',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: 20,
-              fontWeight: 700,
-              color: '#ffffff'
+              background: 'linear-gradient(135deg, #F7931A 0%, #FFD93D 100%)'
             }}>
-              W
+              <img 
+                src="/logo.png" 
+                alt="WankCoin" 
+                style={{width: '100%', height: '100%', objectFit: 'cover'}}
+                onError={(e) => {
+                  // Fallback to text if image not found
+                  e.currentTarget.style.display = 'none';
+                  const fallback = document.createElement('span');
+                  fallback.textContent = 'W';
+                  fallback.style.cssText = 'fontSize: 20px; fontWeight: 700; color: #ffffff';
+                  e.currentTarget.parentElement!.appendChild(fallback);
+                }}
+              />
             </div>
             <span style={{fontSize: 20, fontWeight: 700, color: '#1a1a1a'}}>WankCoin</span>
           </Link>
