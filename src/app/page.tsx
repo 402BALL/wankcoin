@@ -238,23 +238,6 @@ export default function Home() {
                       <ArrowRight style={{width: 20, height: 20}} />
                     </motion.div>
                   </Link>
-                  
-                  <Link 
-                    href="/docs" 
-                    className="outline-button"
-                    style={{
-                      border: '2px solid #e5e5e5', 
-                      color: '#1a1a1a', 
-                      fontWeight: 600, 
-                      padding: '14px 32px', 
-                      borderRadius: 50, 
-                      textDecoration: 'none', 
-                      fontSize: 16,
-                      backgroundColor: 'transparent'
-                    }}
-                  >
-                    Contact us
-                  </Link>
                 </motion.div>
               </div>
               
