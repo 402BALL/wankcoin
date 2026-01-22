@@ -105,8 +105,6 @@ const navItems = [
   { id: 'analytics', label: 'Analytics', icon: BarChart3, active: false },
   { id: 'history', label: 'Operation history', icon: FileText, active: false },
   { id: 'users', label: 'Manage users', icon: Users, active: false },
-  { id: 'wallet', label: 'Combo wallet', icon: Wallet, active: false },
-  { id: 'gifts', label: 'Gift cards', icon: Gift, active: false },
 ];
 
 export default function Dashboard() {
@@ -447,18 +445,6 @@ export default function Dashboard() {
             );
           })}
         </nav>
-
-        <div style={{padding: '0 24px', marginTop: 'auto'}}>
-          <div style={{
-            padding: 16,
-            borderRadius: 12,
-            background: 'linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%)',
-            marginBottom: 12
-          }}>
-            <div style={{fontSize: 12, color: '#ffffff', opacity: 0.9, marginBottom: 4}}>Refer & reward</div>
-            <div style={{fontSize: 14, fontWeight: 600, color: '#ffffff'}}>Earn 10% commission</div>
-          </div>
-        </div>
       </aside>
 
       {/* Main Content */}
