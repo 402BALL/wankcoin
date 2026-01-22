@@ -281,8 +281,7 @@ export default function Home() {
                     border: '1px solid rgba(0,0,0,0.05)',
                     cursor: 'pointer',
                     zIndex: 2,
-                    overflow: 'hidden',
-                    position: 'relative'
+                    overflow: 'hidden'
                   }}
                   initial={{opacity: 0, y: 50, rotate: 5}}
                   animate={{opacity: 1, y: 0, rotate: 2}}
@@ -655,7 +654,7 @@ export default function Home() {
                     Solana-based token with virtual Visa cards - the original vision, finally working
                   </div>
                 </motion.div>
-              </div>
+        </div>
 
               <motion.div
                 style={{marginTop: 40}}
@@ -666,8 +665,8 @@ export default function Home() {
               >
                 <a
                   href="https://bitcointalk.org/index.php?topic=625934.0"
-                  target="_blank"
-                  rel="noopener noreferrer"
+            target="_blank"
+            rel="noopener noreferrer"
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
