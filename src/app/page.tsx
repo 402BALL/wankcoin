@@ -30,17 +30,8 @@ export default function Home() {
   const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [burnCount, setBurnCount] = useState(0);
   const [cardBalance, setCardBalance] = useState(1250);
   const [showCardDetails, setShowCardDetails] = useState(false);
-
-  // Animated burn counter
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setBurnCount(prev => prev + Math.floor(Math.random() * 100));
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
 
   const copyAddress = () => {
     navigator.clipboard.writeText(CONTRACT_ADDRESS);
@@ -360,8 +351,8 @@ export default function Home() {
                         style={{padding: 12, backgroundColor: '#f5f5f5', borderRadius: 12}}
                         whileHover={{backgroundColor: '#EF444415', scale: 1.05}}
                       >
-                        <div style={{fontSize: 11, color: '#888888', marginBottom: 4}}>Burned</div>
-                        <div style={{fontSize: 18, fontWeight: 700, color: '#EF4444'}}>{burnCount.toLocaleString('en-US')}</div>
+                        <div style={{fontSize: 11, color: '#888888', marginBottom: 4}}>Burn Rate</div>
+                        <div style={{fontSize: 18, fontWeight: 700, color: '#EF4444'}}>50%</div>
                       </motion.div>
                     </div>
                     <div style={{display: 'flex', gap: 8}}>
@@ -994,10 +985,10 @@ export default function Home() {
               
               <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12}}>
                 {[
-                  { label: 'Total Burned', value: burnCount.toLocaleString('en-US'), suffix: ' WKC', icon: <Flame style={{width: 14, height: 14, color: '#EF4444'}} />, delay: 0.6 },
-                  { label: 'Transactions', value: '12.5K', suffix: '+', icon: <TrendingUp style={{width: 14, height: 14, color: '#22c55e'}} />, delay: 0.7 },
-                  { label: 'Holders', value: '3,200', suffix: '+', icon: <Users style={{width: 14, height: 14, color: '#3B82F6'}} />, delay: 0.8 },
-                  { label: 'Cards Generated', value: '8,400', suffix: '', icon: <CreditCard style={{width: 14, height: 14, color: '#8B5CF6'}} />, delay: 0.9 }
+                  { label: 'Burn Rate', value: '50%', suffix: ' per tx', icon: <Flame style={{width: 14, height: 14, color: '#EF4444'}} />, delay: 0.6 },
+                  { label: 'Treasury', value: '50%', suffix: ' per tx', icon: <BarChart3 style={{width: 14, height: 14, color: '#3B82F6'}} />, delay: 0.7 },
+                  { label: 'Card Limit', value: '$100', suffix: ' max', icon: <CreditCard style={{width: 14, height: 14, color: '#8B5CF6'}} />, delay: 0.8 },
+                  { label: 'Supported', value: '10K+', suffix: ' sites', icon: <Globe style={{width: 14, height: 14, color: '#22c55e'}} />, delay: 0.9 }
                 ].map((stat, i) => (
                   <motion.div 
                     key={i} 
@@ -1300,43 +1291,69 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right - Live Stats */}
+            {/* Right - How It Works */}
             <div>
               <motion.div 
-                style={{backgroundColor: '#1a1a1a', borderRadius: 20, padding: 32, border: '1px solid #333333', textAlign: 'center', marginBottom: 24}}
+                style={{backgroundColor: '#1a1a1a', borderRadius: 20, padding: 32, border: '1px solid #333333', marginBottom: 24}}
                 initial={{opacity: 0, scale: 0.9}}
                 whileInView={{opacity: 1, scale: 1}}
                 viewport={{once: true}}
               >
-                <motion.div
-                  animate={{scale: [1, 1.1, 1], color: ['#EF4444', '#F97316', '#EF4444']}}
-                  transition={{duration: 2, repeat: Infinity}}
-                >
-                  <Flame style={{width: 48, height: 48, margin: '0 auto 16px'}} />
-                </motion.div>
-                <div style={{fontSize: 14, color: '#888888', marginBottom: 8}}>Total Burned</div>
-                <motion.div 
-                  style={{fontSize: 40, fontWeight: 800}}
-                  key={burnCount}
-                  animate={{scale: [1, 1.05, 1]}}
-                >
-                  {burnCount.toLocaleString('en-US')} WKC
-                </motion.div>
+                <h4 style={{fontSize: 18, fontWeight: 600, marginBottom: 16}}>How it works</h4>
+                <div style={{display: 'flex', flexDirection: 'column', gap: 16}}>
+                  <div style={{display: 'flex', alignItems: 'start', gap: 12}}>
+                    <div style={{width: 32, height: 32, borderRadius: 8, backgroundColor: 'rgba(239, 68, 68, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                      <span style={{fontSize: 18, fontWeight: 700, color: '#EF4444'}}>1</span>
+                    </div>
+                    <div>
+                      <div style={{fontSize: 15, fontWeight: 600, marginBottom: 4}}>You pay with WKC</div>
+                      <div style={{fontSize: 13, color: '#888888'}}>Use WKC tokens to generate virtual cards</div>
+                    </div>
+                  </div>
+                  <div style={{display: 'flex', alignItems: 'start', gap: 12}}>
+                    <div style={{width: 32, height: 32, borderRadius: 8, backgroundColor: 'rgba(239, 68, 68, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                      <span style={{fontSize: 18, fontWeight: 700, color: '#EF4444'}}>2</span>
+                    </div>
+                    <div>
+                      <div style={{fontSize: 15, fontWeight: 600, marginBottom: 4}}>50% gets burned</div>
+                      <div style={{fontSize: 13, color: '#888888'}}>Half of your WKC payment is permanently destroyed</div>
+                    </div>
+                  </div>
+                  <div style={{display: 'flex', alignItems: 'start', gap: 12}}>
+                    <div style={{width: 32, height: 32, borderRadius: 8, backgroundColor: 'rgba(59, 130, 246, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                      <span style={{fontSize: 18, fontWeight: 700, color: '#3B82F6'}}>3</span>
+                    </div>
+                    <div>
+                      <div style={{fontSize: 15, fontWeight: 600, marginBottom: 4}}>50% to treasury</div>
+                      <div style={{fontSize: 13, color: '#888888'}}>Other half funds development and growth</div>
+                    </div>
+                  </div>
+                  <div style={{display: 'flex', alignItems: 'start', gap: 12}}>
+                    <div style={{width: 32, height: 32, borderRadius: 8, backgroundColor: 'rgba(34, 197, 94, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+                      <span style={{fontSize: 18, fontWeight: 700, color: '#22c55e'}}>4</span>
+                    </div>
+                    <div>
+                      <div style={{fontSize: 15, fontWeight: 600, marginBottom: 4}}>You get your card</div>
+                      <div style={{fontSize: 13, color: '#888888'}}>Use it instantly on any platform</div>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
 
-              <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16}}>
-                {[
-                  { label: 'Total Supply', value: '1B' },
-                  { label: 'Circulating', value: '~800M' },
-                  { label: 'Transactions', value: '12.5K+' },
-                  { label: 'Holders', value: '3.2K+' }
-                ].map((stat, i) => (
-                  <div key={i} style={{backgroundColor: '#1a1a1a', borderRadius: 16, padding: 20, textAlign: 'center', border: '1px solid #333333'}}>
-                    <div style={{fontSize: 12, color: '#888888', marginBottom: 4}}>{stat.label}</div>
-                    <div style={{fontSize: 24, fontWeight: 700}}>{stat.value}</div>
-                  </div>
-                ))}
-              </div>
+              <motion.div 
+                style={{backgroundColor: '#1a1a1a', borderRadius: 20, padding: 32, border: '1px solid #333333'}}
+                initial={{opacity: 0, y: 20}}
+                whileInView={{opacity: 1, y: 0}}
+                viewport={{once: true}}
+              >
+                <h4 style={{fontSize: 18, fontWeight: 600, marginBottom: 16}}>Why this matters</h4>
+                <p style={{fontSize: 14, color: '#888888', lineHeight: 1.6, marginBottom: 12}}>
+                  Every transaction reduces the total supply. As more people use WKC, tokens become scarcer, creating natural deflationary pressure.
+                </p>
+                <p style={{fontSize: 14, color: '#888888', lineHeight: 1.6}}>
+                  The burn mechanism ensures that active usage benefits all holders by increasing scarcity over time.
+                </p>
+              </motion.div>
             </div>
           </div>
         </div>
